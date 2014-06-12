@@ -22,7 +22,6 @@ def decode(variables,file):
     if not check(sol):
         print("Error en la solucion")
     file.write(out + '\n')
-    file.close()
 
 def read_sol_file(filename):
     file = open(filename,"r")
