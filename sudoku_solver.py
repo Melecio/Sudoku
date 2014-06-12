@@ -14,7 +14,7 @@ def main():
     sudoku = [9*[0] for x in range(9)]
     instances = open(sys.argv[1],'r')
     solution_fd = open('solution','w')
-    
+
     for s in instances:
         for i in range(81):
             sudoku[i//9][i%9] = s[i]
@@ -32,12 +32,12 @@ def main():
         except:
             print("No hay solucion para [" + s +"]\n")
             continue
-        
+
         variables = read_sol_file("sudoku_solution")
-        
-        solution_fd.write(s + '\n' + str(delta) + '\n')
+
+        solution_fd.write(s + str(delta) + '\n\n')
         decode(variables,solution_fd)
-    
+
     os.remove('sudoku.cnf')
     os.remove('sudoku_solution')
     os.remove('constant_clauses')
