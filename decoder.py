@@ -14,7 +14,7 @@ def decode(variables,file):
     out = ''
     for i in variables:
         if int(i) > 0:
-            sol[int(i[0])-1][int(i[1])-1] = int(i[2]) + 1
+            sol[int(i[0])-1][int(i[1])-1] = int(i[2])
     for i in range(9):
         for j in range(9):
             out += str(sol[i][j])
