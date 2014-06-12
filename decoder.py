@@ -11,7 +11,8 @@ def decode(variables,file):
         for j in range(9):
             out += str(sol[i][j])
         out += '\n'
-    file.write(out)
+    file.write(out + '\n')
+    file.close()
 
 def read_sol_file(filename):
     file = open(filename,"r")
