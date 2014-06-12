@@ -27,8 +27,7 @@ def main():
         # get a solution and measure it's time
         start = time.time()
         subprocess.call(['./build/release/bin/minisat', sudoku_cnf, minisat_solname], stdout = open(os.devnull, 'w'), stderr = open(os.devnull, 'w'))
-        lapse = time.time()
-        delta = lapse - start
+        delta = time.time() - start
 
         # if the file was created
         if os.path.isfile(minisat_solname):
