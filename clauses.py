@@ -1,6 +1,5 @@
 # Generates constant clauses
 def clauses():
-
     # General clause string
     clause = ''
 

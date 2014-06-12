@@ -26,7 +26,7 @@ def main():
 
         # get a solution and measure it's time
         start = time.time()
-        subprocess.call(['./build/release/bin/minisat', sudoku_cnf, minisat_solname], stdout = open('minisat.out', 'w'), stderr = open('minisat.err', 'w'))
+        subprocess.call(['./build/release/bin/minisat', sudoku_cnf, minisat_solname], stdout = open(os.devnull, 'w'), stderr = open(os.devnull, 'w'))
         lapse = time.time()
         delta = lapse - start
 
@@ -35,7 +35,7 @@ def main():
             solution_file.write("-----------------------\ninstance: '" + inst + "'\ntime: " + str(delta) + '\n\n')
             decode(minisat_solname, solution_file)
         else:
-            print("there is no solution for instance '" + inst[:-1] +"'\n")
+            print("there is no solution for the instance '" + inst[:-1] +"'\n")
 
     if os.path.isfile(minisat_solname):
         os.remove(minisat_solname)

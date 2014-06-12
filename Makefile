@@ -211,6 +211,7 @@ clean:
 	  $(BUILD_DIR)/dynamic/lib/$(MINISAT_DLIB).$(SOMAJOR).$(SOMINOR)$(SORELEASE)\
 	  $(BUILD_DIR)/dynamic/lib/$(MINISAT_DLIB).$(SOMAJOR)\
 	  $(BUILD_DIR)/dynamic/lib/$(MINISAT_DLIB)
+	rm *.pyc
 
 distclean:	clean
 	rm -f config.mk
