@@ -10,57 +10,57 @@ number = 0
 
 # Every cell contains one value from 1 to 9.
 # 81 clauses
-for i in range(1, 10):
-    for j in range(1, 10):
-        for k in range(1, 10):
-            clause += `i` + `j` + `k` + ' '
+for x in range(1, 10):
+    for y in range(1, 10):
+        for z in range(1, 10):
+            clause += `x` + `y` + `z` + ' '
         clause += '0 \n'
 
 # Exactly one value for every cell
 # 2916 clauses
-for i in range(1, 10):
-    for j in range(1, 10):
-        for k in range(1, 10):
-            for l in range(k+1, 10):
-                clause +=  '-' + `i` + `j` + `k` + ' ' + '-' + `i` + `j` + `l`
+for x in range(1, 10):
+    for y in range(1, 10):
+        for z in range(1, 9):
+            for i in range(z+1, 10):
+                clause +=  '-' + `x` + `y` + `z` + ' ' + '-' + `x` + `y` + `i`
                 clause += ' 0 \n'
 
 ## Row clauses
 
 # Row  contains a value in range 1 to 9.
 # 81 clauses
-for i in range(1, 10):
-    for j in range(1, 10):
-        for k in range(1, 10):
-            clause += `i` + `k` + `j` + ' '
+for y in range(1, 10):
+    for z in range(1, 10):
+        for i in range(1, 10):
+            clause += `x` + `y` + `z` + ' '
         clause += '0 \n'
 
 # Exactly one value for every row
 # 2916 clauses
-for i in range(1, 10):
-    for j in range(1, 10):
-        for k in range(1, 10):
-            for l in range(k+1, 10):
-                clause +=  '-' + `i` + `k` + `j` + ' ' + '-' + `i` + `l` + `j`
+for y in range(1, 10):
+    for z in range(1, 10):
+        for x in range(1, 9):
+            for i in range(x+1, 10):
+                clause +=  '-' + `x` + `y` + `z` + ' ' + '-' + `i` + `y` + `z`
                 clause += ' 0 \n'
 
 ## Column clauses
 
 # Every column contains a value in range 1 to 9.
 # 81 clauses
-for i in range(1, 10):
-    for j in range(1, 10):
-        for k in range(1, 10):
-            clause += `k` + `i` + `j` + ' '
+for x in range(1, 10):
+    for z in range(1, 10):
+        for y in range(1, 10):
+            clause += `x` + `y` + `z` + ' '
         clause += '0 \n'
 
 # Exactly one value for every column
 # 2916 clauses
-for i in range(1, 10):
-    for j in range(1, 10):
-        for k in range(1, 10):
-            for l in range(k+1, 10):
-                clause += '-' + `k` + `i` + `j` + ' ' + '-' + `l` + `i` + `j` + ' '
+for x in range(1, 10):
+    for z in range(1, 10):
+        for y in range(1, 9):
+            for i in range(y+1, 10):
+                clause +=  '-' + `x` + `y` + `z` + ' ' + '-' + `x` + `i` + `z`
                 clause += '0 \n'
 
 ## Block clauses
@@ -92,4 +92,3 @@ for z in range(1,10):
                             clause += '-' + `(3*i + k)` + `(3*j + l)` + `z` + ' '
                             clause += '0 \n'
 
-print(clause)
