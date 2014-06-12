@@ -56,3 +56,4 @@ minisat.out
 sudoku.cnf
 solution
 minisat.err
+config.mk
