@@ -8,7 +8,7 @@ number = 0
 
 ## Individual cell clauses
 
-# Every cell contains one value from 1 to 9.
+# There is at least one number in each entry
 # 81 clauses
 for x in range(1, 10):
     for y in range(1, 10):
@@ -16,37 +16,39 @@ for x in range(1, 10):
             clause += `x` + `y` + `z` + ' '
         clause += '0 \n'
 
-# Exactly one value for every cell
+# At most one number in each entry
 # 2916 clauses
 for x in range(1, 10):
     for y in range(1, 10):
         for z in range(1, 9):
             for i in range(z+1, 10):
-                clause +=  '-' + `x` + `y` + `z` + ' ' + '-' + `x` + `y` + `i`
-                clause += ' 0 \n'
+                clause += '-' + `x` + `y` + `z` + ' '
+                clause += '-' + `x` + `y` + `i` + ' '
+                clause += '0 \n'
 
 ## Row clauses
 
-# Row  contains a value in range 1 to 9.
+# Each number appears at least once in each row
 # 81 clauses
 for y in range(1, 10):
     for z in range(1, 10):
-        for i in range(1, 10):
+        for x in range(1, 10):
             clause += `x` + `y` + `z` + ' '
         clause += '0 \n'
 
-# Exactly one value for every row
+# Each number appears at most once in each row
 # 2916 clauses
 for y in range(1, 10):
     for z in range(1, 10):
         for x in range(1, 9):
             for i in range(x+1, 10):
-                clause +=  '-' + `x` + `y` + `z` + ' ' + '-' + `i` + `y` + `z`
-                clause += ' 0 \n'
+                clause += '-' + `x` + `y` + `z` + ' '
+                clause += '-' + `i` + `y` + `z` + ' '
+                clause += '0 \n'
 
 ## Column clauses
 
-# Every column contains a value in range 1 to 9.
+# Each number appears at least once in each column
 # 81 clauses
 for x in range(1, 10):
     for z in range(1, 10):
@@ -54,13 +56,14 @@ for x in range(1, 10):
             clause += `x` + `y` + `z` + ' '
         clause += '0 \n'
 
-# Exactly one value for every column
+# Each number appears at most once in each column
 # 2916 clauses
 for x in range(1, 10):
     for z in range(1, 10):
         for y in range(1, 9):
             for i in range(y+1, 10):
-                clause +=  '-' + `x` + `y` + `z` + ' ' + '-' + `x` + `i` + `z`
+                clause += '-' + `x` + `y` + `z` + ' '
+                clause += '-' + `x` + `i` + `z` + ' '
                 clause += '0 \n'
 
 ## Block clauses
