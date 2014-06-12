@@ -92,3 +92,7 @@ for z in range(1,10):
                             clause += '-' + `(3*i + k)` + `(3*j + l)` + `z` + ' '
                             clause += '0 \n'
 
+output = open('constant_clauses', 'w')
+output.write(clause)
+output.close()
+
