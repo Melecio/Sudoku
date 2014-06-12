@@ -5,8 +5,8 @@ def check(sol):
     for x in range(0,81):
         for i in NEIGHBORS[x]:
             if sol[i//9][i%9] == sol[x//9][x%9]:
-                return false
-    return true
+                return False
+    return True
 
 # Decodes the minisat output
 def decode(variables,file):
@@ -19,7 +19,8 @@ def decode(variables,file):
         for j in range(9):
             out += str(sol[i][j])
         out += '\n'
-    check(sol)
+    if not check(sol):
+        print("Error en la solucion")
     file.write(out + '\n')
     file.close()
 
