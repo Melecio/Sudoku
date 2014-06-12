@@ -3,9 +3,6 @@
 def clauses():
     # General clause string
     clause = ''
-    # This variable is for documenting purposes only. (MP)
-    number = 0
-
 
     ## Individual cell clauses
 
