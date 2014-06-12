@@ -11,6 +11,8 @@ def main():
 
     # Create constant_clauses file
     clauses()
+    with open('constant_clauses','r') as fd:
+        clss = fd.read()
     sudoku = [9*[0] for x in range(9)]
     instances = open(sys.argv[1],'r')
     solution_fd = open('solution','w')
@@ -19,7 +21,7 @@ def main():
         for i in range(81):
             sudoku[i//9][i%9] = s[i]
 
-        encode(sudoku)
+        encode(sudoku,clss)
 
         start = time.time()
         subprocess.call(["./build/release/bin/minisat","sudoku.cnf","sudoku_solution"],stdout=open('minisat.out','w'),stderr=open('minisat.err','w'))
@@ -35,7 +37,7 @@ def main():
 
         variables = read_sol_file("sudoku_solution")
 
-        solution_fd.write(s + str(delta) + '\n\n')
+        solution_fd.write('-----------------------\n'+s + str(delta) + '\n\n')
         decode(variables,solution_fd)
 
     os.remove('sudoku.cnf')

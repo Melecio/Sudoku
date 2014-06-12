@@ -1,14 +1,10 @@
 import os
 
 # Creates the cnf formated file for minisat
-def encode(input):
+def encode(input,clauses):
     restriction_number = 11988
-    clauses = open('constant_clauses','r')
     aux_fd = open('tmpfile','w')
-    for i in clauses:
-        aux_fd.write(i);
-    aux_fd.close()
-    aux_fd = open('tmpfile','a')
+    aux_fd.write(clauses);
     for i in range(9):
         for j in range(9):
             if input[i][j] != '.':
