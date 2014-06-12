@@ -1,6 +1,18 @@
 import sys
 from constants import NEIGHBORS
 
+sol = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
 def check(sol):
     for x in range(0,81):
         for i in NEIGHBORS[x]:
@@ -10,7 +22,6 @@ def check(sol):
 
 # Decodes the minisat output
 def decode(variables,file):
-    sol = [9*[0] for x in range(9)]
     out = ''
     for i in variables:
         if int(i) > 0:

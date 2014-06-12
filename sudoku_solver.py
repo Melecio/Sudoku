@@ -19,7 +19,7 @@ def main():
         for i in range(81):
             sudoku[i//9][i%9] = inst[i]
 
-        encode(sudoku)
+        encode(sudoku,clauses_string)
 
         start = time.time()
         subprocess.call(["./build/release/bin/minisat","sudoku.cnf","sudoku_solution"],stdout=open('minisat.out','w'),stderr=open('minisat.err','w'))
@@ -35,7 +35,7 @@ def main():
 
         variables = read_sol_file("sudoku_solution")
 
-        solution_file.write(inst + str(delta) + '\n\n')
+        solution_file.write('-----------------------\n' + inst + str(delta) + '\n\n')
         decode(variables,solution_file)
 
     os.remove('sudoku.cnf')
