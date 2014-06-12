@@ -26,7 +26,7 @@ def main():
 
         # get a solution and measure it's time
         start = time.time()
-        # subprocess.call(['./build/release/bin/minisat', sudoku_cnf, minisat_solname], stdout = open('minisat.out', 'w'), stderr = open('minisat.err', 'w'))
+        subprocess.call(['./build/release/bin/minisat', sudoku_cnf, minisat_solname], stdout = open('minisat.out', 'w'), stderr = open('minisat.err', 'w'))
         lapse = time.time()
         delta = lapse - start
 

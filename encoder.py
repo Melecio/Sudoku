@@ -26,7 +26,7 @@ def check(sol):
 
 # Decodes the minisat output
 def decode(solution_filename,file):
-    vairables = read_sol_file(solution_filename)
+    variables = read_sol_file(solution_filename)
     out = ''
 
     for var in variables:
