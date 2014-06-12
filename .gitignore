@@ -54,3 +54,5 @@ docs/_build/
 
 minisat.out
 sudoku.cnf
+solution
+minisat.err
