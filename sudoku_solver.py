@@ -32,7 +32,7 @@ def main():
 
         # if the file was created
         if os.path.isfile(minisat_solname):
-            solution_file.write('-----------------------\n' + inst + str(delta) + '\n\n')
+            solution_file.write("-----------------------\ninstance: '" + inst + "'\ntime: " + str(delta) + '\n\n')
             decode(minisat_solname, solution_file)
         else:
             print("there is no solution for instance '" + inst[:-1] +"'\n")
