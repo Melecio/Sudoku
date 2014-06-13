@@ -15,6 +15,10 @@ def main():
         print('use 1 for minimal or 2 for extendend in encoding')
         exit(1)
 
+	if not os.path.isfile('./build/release/bin/minisat'):
+        print('run `make r` first')
+        exit(1)
+
     # Get constant clauses
     encoding        = int(sys.argv[2])
     clauses_string  = clauses(encoding)
@@ -25,7 +29,7 @@ def main():
     sudoku_cnf      = 'sudoku.cnf'
 
     for inst in instances:
-        for i in range(81):
+        for i in range(0, 81):
             sudoku[i//9][i%9] = inst[i]
 
         encode(sudoku, clauses_string, encoding)
