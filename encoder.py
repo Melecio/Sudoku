@@ -41,7 +41,7 @@ def decode(solution_filename,file):
         out += '\n'
 
     if not check(solution):
-        print('Error en la solucion')
+        print('the solution given is wrong')
 
     file.write(out + '\n')
 

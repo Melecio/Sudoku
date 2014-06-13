@@ -11,6 +11,10 @@ def main():
         print('use: sudoku_solver <sudoku_instances_file>')
         exit(1)
 
+    if not os.path.isfile('./build/release/bin/minisat'):
+        print('run `make r` first')
+        exit(1)
+
     clauses_string  = clauses()
     sudoku          = NINExNINE
     instances       = open(sys.argv[1],'r')
@@ -19,7 +23,7 @@ def main():
     sudoku_cnf      = 'sudoku.cnf'
 
     for inst in instances:
-        for i in range(81):
+        for i in range(0, 81):
             sudoku[i//9][i%9] = inst[i]
 
         encode(sudoku, clauses_string)
