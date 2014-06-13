@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\usepackage{color}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{figure}[t]
+    \begin{center}
+        { \LARGE \bfseries Resolución de Sudoku mediante SAT}\\[0.4cm]
+        \textsc{Proyecto 1}\\[0.1cm]
+        \textsc{Matteo Ferrando - 09-10285}\\[0.1cm]
+        \textsc{Erick Dos Ramos - 07-40845}\\[0.1cm]
+        \textsc{José Ponte - 08-10893}\\[0.1cm]
+    \end{center}
+\end{figure}
+
+
+\clearpage
+
+
+\section*{El problema}
+
+El puzzle consta en una cuadrícula de 9x9 la cual a su vez se divide en 9 cuadrículas pequeñas de 3x3.
+
+El objetivo es rellenar cada una de las casillas con números del 1 al 9 de tal manera que se cumplan cada una de las siguientes condiciones:
+
+Dado un número \emph{x} en el rango {1..9}
+\begin{enumerate}
+    \item \emph{x} no puede aparecer dos veces en una misma fila de 9 casillas.
+    \item \emph{x} no puede aparecer dos veces en una misma columna de 9 casillas.
+    \item \emph{x} no puede aparecer dos veces en una misma mini cuadrícula de 3x3 de 9 casillas.
+\end{enumerate}
+
+
+\section*{Representación}
+
+Para hacer uso de un resolucionador SAT se necesita representar el problema en función de variables CNF. Para ello se usa la solución de \emph{Lynce \&Ouaknine (2009)}.
+
+En dicha representación, se usan 729 variables, donde cada una representa una casilla con un valor. De tal manera que \emph{xyz} representa que en la fila \emph{x} y columna \emph{y} se encuentra el valor \emph{z}. De manera análoga, \emph{-xyz} representa que en la fila \emph{x} y columna \emph{y} no se encuentra el valor \emph{z}.
+
+\section*{Cláusulas}
+
+Según \emph{Lynce \& Ouaknine} existen dos representaciones para las clausulas, de las cuales una es redundante sobre la otra. La versión mínima, contando con 8829 clausulas, consta de las siguientes reglas:
+
+\begin{itemize}
+    \item Cada casilla tiene por lo menos un número.
+    \item Cada número aparece sólo una vez en cada fila.
+    \item Cada número aparece sólo una vez en cada columna.
+    \item Cada número aparece sólo una vez en cada cuadrilla 3x3.
+    \item Cada número aparece por lo menos una vez en una cuadrilla 3x3.
+\end{itemize}
+
+Mientras que la versión extendida, que aumenta el número de cláusulas a 11988 cuenta con las siguientes reglas redudantes:
+
+\begin{itemize}
+    \item Hay a lo sumo un número en cada casilla.
+    \item Cada número aparece por lo menos una vez en una fila.
+    \item Cada número aparece por lo menos una vez en una columna.
+\end{itemize}
+
+\section*{Resolucionador SAT}
+
+Para solucionar las instancias de Sudoku, se hace uso del resolucionador de SAT \emph{minisat}, de \emph{Niklas Sorensson (2007)}.
+
+\section*{Resultados experimentales}
+
+Para los experimentos se usaron 3 conjuntos de instancias las cuale se describen a continuación:
+
+\begin{itemize}
+    \item 95 instancias consideradas difíciles.
+    \item 11 instancias consideradas las más difíciles.
+    \item 10000 instancias aleatorias.
+\end{itemize}
+
+Sobre estos conjuntos de instancias se realizaron corridas del programa usando tanto la codificación mínima como la extendida. A continuación los resultados:
+
+\begin{center}
+
+\begin{center}
+    95 instancias consideradas difíciles
+    \begin{tabular}{| c | c | c |}
+        \hline
+        Codificanción & Promedio (seg) & Desviación estándar (seg) \\ \hline
+        Minima & 0.01697420572 & 0.04042029507 \\ \hline
+        Extendida & 0.02214772325 & 0.0197511312 \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    10000 instancias aleatorias
+    \begin{tabular}{| c | c | c |}
+        \hline
+        Codificanción & Promedio (seg) & Desviación estándar (seg) \\ \hline
+        Minima & 0.01664685256 & 0.01508405552 \\ \hline
+        Extendida & 0.02117171717 & 0.01944773875 \\ \hline
+    \end{tabular}
+\end{center}
+
+    11 instancias consideradas las más difíciles
+    \begin{tabular}{| c | c | c |}
+        \hline
+        Codificanción & Promedio (seg) & Desviación estándar (seg) \\ \hline
+        Minima & 0.02648839084 & 0.04042029507 \\ \hline
+        Extendida & 0.01683092117 & 0.004581485279 \\ \hline
+    \end{tabular}
+\end{center}
+
+\section*{Conclusiones}
+
+Tomando en consideración los resultados obtenidos en los 3 conjuntos de instancias, se puede concluir con evidencia estadística que, para casos sencillos, la codificación mínima resuelve los problemas de manera más rápida. Mientras que para los casos más complicados la codificación extendida provee más información con lo cual puede llegar más rápido a las soluciones. Estos resultados coinciden con los arrojados por \emph{Lynce \& Ouaknine} respecto a dichas codificaciones.
+
+\end{document}

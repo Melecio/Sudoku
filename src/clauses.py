@@ -1,5 +1,5 @@
 # Generates constant clauses
-def clauses():
+def clauses(encoding):
     # General clause string
     clause = ''
 
@@ -14,20 +14,24 @@ def clauses():
 
             # At most one number in each entry
             # 2916 clauses
-            for z in range(1, 9):
-                for i in range(z+1, 10):
-                    clause += '-' + str(x) + str(y) + str(z) + ' '
-                    clause += '-' + str(x) + str(y) + str(i) + ' '
-                    clause += '0 \n'
+            # Extended
+            if encoding == 2:
+                for z in range(1, 9):
+                    for i in range(z+1, 10):
+                        clause += '-' + str(x) + str(y) + str(z) + ' '
+                        clause += '-' + str(x) + str(y) + str(i) + ' '
+                        clause += '0 \n'
 
     # Row clauses
     for y in range(1, 10):
         for z in range(1, 10):
             # Each number appears at least once in each row
             # 81 clauses
-            for x in range(1, 10):
-                clause += str(x) + str(y) + str(z) + ' '
-            clause += '0 \n'
+            # Extended
+            if encoding == 2:
+                for x in range(1, 10):
+                    clause += str(x) + str(y) + str(z) + ' '
+                clause += '0 \n'
 
             # Each number appears at most once in each row
             # 2916 clauses
@@ -42,9 +46,11 @@ def clauses():
         for z in range(1, 10):
             # Each number appears at least once in each column
             # 81 clauses
-            for y in range(1, 10):
-                clause += str(x) + str(y) + str(z) + ' '
-            clause += '0 \n'
+            # Extended
+            if encoding == 2:
+                for y in range(1, 10):
+                    clause += str(x) + str(y) + str(z) + ' '
+                clause += '0 \n'
 
             # Each number appears at most once in each column
             # 2916 clauses
@@ -60,10 +66,12 @@ def clauses():
             for j in range(0,3):
                 # Each number appears at least once in each block
                 # 81 clauses
-                for x in range(1,4):
-                    for y in range(1,4):
-                        clause += str(3*i + x) + str(3*j + y) + str(z) + ' '
-                clause += '0 \n'
+                # Extended
+                if encoding == 2:
+                    for x in range(1,4):
+                        for y in range(1,4):
+                            clause += str(3*i + x) + str(3*j + y) + str(z) + ' '
+                    clause += '0 \n'
 
                 # Each number appears at most once in each block
                 # 2916 clauses
@@ -83,4 +91,4 @@ def clauses():
 
 
 if __name__ == '__main__':
-    print clauses()
+    print clauses(1)

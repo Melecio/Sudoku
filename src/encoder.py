@@ -2,8 +2,12 @@ import sys, os
 from constants import *
 
 # Creates the CNF formated file for minisat
-def encode(sudoku_in, clauses):
-    restriction_number = 11988
+def encode(sudoku_in, clauses, encoding):
+    if encoding == 1:
+        restriction_number = 8829
+    if encoding == 2:
+        restriction_number = 11988
+
     for i in range(0, 9):
         for j in range(0, 9):
             if sudoku_in[i][j] != '.':
